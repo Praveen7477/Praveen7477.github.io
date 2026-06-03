@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Praveen Pandarinathan — ML/AI Engineer & Cloud Architect</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Google Analytics placeholder — replace G-XXXXXXXXXX with your ID -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script> -->
+<style>
+/* ── THEME TOKENS ── */
+[data-theme="dark"] {
+  --bg:#0a0a0f; --surface:#111118; --surface2:#18181f; --surface3:#1e1e28;
+  --border:rgba(255,255,255,0.08); --border-bright:rgba(255,255,255,0.15);
+  --text:#f0f0f5; --text-muted:#888896; --text-dim:#555565;
+  --accent:#00d4ff; --accent2:#7c3aed; --accent3:#06ffa5;
+  --tag-bg:rgba(0,212,255,0.08); --tag-border:rgba(0,212,255,0.2);
+  --nav-bg:rgba(10,10,15,0.88);
+  --card-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  --photo-glow: 0 0 0 3px rgba(0,212,255,0.35), 0 0 32px rgba(0,212,255,0.18);
+}
+[data-theme="light"] {
+  --bg:#f5f5f8; --surface:#ffffff; --surface2:#f0f0f4; --surface3:#e8e8ef;
+  --border:rgba(0,0,0,0.08); --border-bright:rgba(0,0,0,0.18);
+  --text:#111118; --text-muted:#555568; --text-dim:#999aaa;
+  --accent:#0088bb; --accent2:#5b21b6; --accent3:#059669;
+  --tag-bg:rgba(0,136,187,0.07); --tag-border:rgba(0,136,187,0.22);
+  --nav-bg:rgba(245,245,248,0.92);
+  --card-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  --photo-glow: 0 0 0 3px rgba(0,136,187,0.3), 0 0 32px rgba(0,136,187,0.12);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;transition:background .3s,color .3s;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:.9rem 2rem;display:flex;align-items:center;justify-content:space-between;background:var(--nav-bg);backdrop-filter:blur(14px);border-bottom:.5px solid var(--border);}
+.nav-logo{font-family:'DM Mono',monospace;font-size:14px;color:var(--accent);letter-spacing:.04em;}
+.nav-links{display:flex;gap:1.8rem;list-style:none;align-items:center;}
+.nav-links a{font-size:13px;color:var(--text-muted);text-decoration:none;letter-spacing:.05em;transition:color .2s;}
+.nav-links a:hover{color:var(--text);}
+.theme-toggle{background:var(--surface2);border:.5px solid var(--border-bright);border-radius:20px;padding:5px 12px;font-size:13px;cursor:pointer;color:var(--text-muted);transition:all .2s;display:flex;align-items:center;gap:6px;}
+.theme-toggle:hover{color:var(--text);border-color:var(--accent);}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;align-items:center;padding:8rem 2rem 4rem;max-width:1140px;margin:0 auto;}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;width:100%;}
+.hero-photo-wrap{display:flex;flex-direction:column;align-items:center;gap:1.5rem;}
+.hero-photo{width:220px;height:220px;border-radius:50%;object-fit:cover;box-shadow:var(--photo-glow);border:3px solid var(--accent);transition:box-shadow .3s;}
+.hero-photo-placeholder{width:220px;height:220px;border-radius:50%;background:var(--surface2);border:3px solid var(--accent);box-shadow:var(--photo-glow);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--text-dim);font-size:13px;font-family:'DM Mono',monospace;letter-spacing:.04em;text-align:center;padding:1rem;}
+.photo-initials{font-family:'Syne',sans-serif;font-size:3rem;font-weight:800;color:var(--accent);line-height:1;}
+.hero-social-row{display:flex;gap:.75rem;}
+.hero-social-btn{display:flex;align-items:center;gap:6px;padding:6px 14px;background:var(--surface2);border:.5px solid var(--border-bright);border-radius:20px;font-size:12px;color:var(--text-muted);text-decoration:none;letter-spacing:.04em;transition:all .2s;}
+.hero-social-btn:hover{color:var(--accent);border-color:var(--accent);}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:12px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.2rem;display:flex;align-items:center;gap:.75rem;}
+.hero-eyebrow::before{content:'';display:inline-block;width:32px;height:1px;background:var(--accent);}
+h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.6rem,4.5vw,4rem);line-height:1.05;color:var(--text);margin-bottom:1.4rem;}
+h1 .name-accent{color:var(--accent);}
+.hero-desc{font-size:15px;color:var(--text-muted);line-height:1.75;max-width:430px;margin-bottom:2rem;}
+.hero-cta{display:flex;gap:.75rem;flex-wrap:wrap;}
+.btn-primary{padding:.75rem 1.6rem;background:var(--accent);color:#000;border:none;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;text-decoration:none;letter-spacing:.03em;cursor:pointer;transition:opacity .2s,transform .15s;}
+.btn-primary:hover{opacity:.85;transform:translateY(-1px);}
+.btn-outline{padding:.75rem 1.6rem;background:transparent;color:var(--text);border:.5px solid var(--border-bright);border-radius:4px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:400;text-decoration:none;letter-spacing:.03em;cursor:pointer;transition:border-color .2s,transform .15s;}
+.btn-outline:hover{border-color:var(--accent);transform:translateY(-1px);}
+
+/* ── AVAILABILITY / STATS ── */
+.available-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(6,255,165,0.08);border:.5px solid rgba(6,255,165,0.25);border-radius:20px;padding:4px 12px;font-size:11px;color:var(--accent3);letter-spacing:.05em;margin-bottom:1.2rem;}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--accent3);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* ── SECTIONS ── */
+section{padding:5rem 2rem;}
+.container{max-width:1140px;margin:0 auto;}
+.section-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.5rem;}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;color:var(--text);margin-bottom:3rem;line-height:1.2;}
+.divider{width:100%;height:.5px;background:var(--border);}
+
+/* ── EXPERIENCE ── */
+.exp-list{display:flex;flex-direction:column;gap:1.5px;}
+.exp-item{background:var(--surface);border:.5px solid var(--border);border-radius:8px;padding:1.75rem 2rem;display:grid;grid-template-columns:1fr auto;gap:1rem;transition:border-color .2s;}
+.exp-item:hover{border-color:var(--border-bright);}
+.exp-role{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:600;color:var(--text);margin-bottom:.2rem;}
+.exp-company{font-size:14px;color:var(--accent);margin-bottom:.6rem;}
+.exp-desc{font-size:14px;color:var(--text-muted);line-height:1.65;}
+.exp-period{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-dim);white-space:nowrap;letter-spacing:.04em;text-align:right;}
+.exp-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:.9rem;}
+.tag{font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);background:var(--tag-bg);border:.5px solid var(--tag-border);border-radius:3px;padding:3px 8px;letter-spacing:.04em;}
+.exp-metrics{display:flex;gap:1.25rem;margin-top:1rem;flex-wrap:wrap;}
+.metric-chip{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--accent3);background:rgba(6,255,165,0.07);border:.5px solid rgba(6,255,165,0.2);border-radius:4px;padding:4px 10px;font-family:'DM Mono',monospace;letter-spacing:.03em;}
+
+/* ── PROJECTS ── */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1px;background:var(--border);border:.5px solid var(--border);border-radius:10px;overflow:hidden;}
+.project-card{background:var(--surface);padding:2rem;display:flex;flex-direction:column;transition:background .2s;text-decoration:none;color:inherit;}
+.project-card:hover{background:var(--surface2);}
+.project-icon{width:40px;height:40px;border-radius:8px;background:var(--surface2);border:.5px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;font-size:18px;flex-shrink:0;}
+.project-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:600;color:var(--text);margin-bottom:.6rem;display:flex;align-items:center;justify-content:space-between;}
+.project-arrow{color:var(--text-dim);font-size:16px;transition:transform .2s,color .2s;}
+.project-card:hover .project-arrow{transform:translate(3px,-3px);color:var(--accent);}
+.project-desc{font-size:13px;color:var(--text-muted);line-height:1.6;flex:1;margin-bottom:1rem;}
+.project-metrics{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem;}
+.proj-metric{font-family:'DM Mono',monospace;font-size:10px;color:var(--accent3);background:rgba(6,255,165,0.06);border:.5px solid rgba(6,255,165,0.18);border-radius:3px;padding:2px 8px;}
+.project-stack{display:flex;flex-wrap:wrap;gap:5px;}
+.stack-tag{font-family:'DM Mono',monospace;font-size:10px;color:var(--text-dim);background:var(--surface2);border:.5px solid var(--border);border-radius:3px;padding:2px 7px;}
+
+/* ── SKILLS WITH BAR ── */
+.skills-layout{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;}
+.skill-group{background:var(--surface);border:.5px solid var(--border);border-radius:8px;padding:1.5rem;}
+.skill-group-title{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:8px;}
+.skill-group-title::after{content:'';flex:1;height:.5px;background:var(--border);}
+.skill-bars{display:flex;flex-direction:column;gap:.7rem;}
+.skill-bar-row{display:flex;flex-direction:column;gap:4px;}
+.skill-bar-label{display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);}
+.skill-bar-label span:last-child{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-dim);}
+.skill-bar-track{height:5px;background:var(--surface2);border-radius:3px;overflow:hidden;}
+.skill-bar-fill{height:100%;border-radius:3px;background:var(--accent);transition:width .8s cubic-bezier(.4,0,.2,1);}
+.skill-pills{display:flex;flex-wrap:wrap;gap:6px;}
+.skill-pill{font-size:12px;color:var(--text-muted);background:var(--surface2);border:.5px solid var(--border);border-radius:4px;padding:4px 10px;transition:border-color .2s,color .2s;}
+.skill-pill:hover{border-color:rgba(0,212,255,0.3);color:var(--text);}
+
+/* ── CERTIFICATIONS ── */
+.certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;}
+.cert-card{background:var(--surface);border:.5px solid var(--border);border-radius:8px;padding:1.5rem;display:flex;flex-direction:column;gap:.75rem;transition:border-color .2s,transform .2s;text-decoration:none;color:inherit;}
+.cert-card:hover{border-color:var(--accent);transform:translateY(-2px);}
+.cert-badge{width:42px;height:42px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;background:var(--tag-bg);border:.5px solid var(--tag-border);}
+.cert-title{font-family:'Syne',sans-serif;font-size:.9rem;font-weight:600;color:var(--text);line-height:1.3;}
+.cert-code{font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:.06em;}
+.cert-verify{font-size:11px;color:var(--text-dim);display:flex;align-items:center;gap:4px;margin-top:auto;}
+.cert-verify-dot{width:5px;height:5px;border-radius:50%;background:var(--accent3);}
+
+/* ── ACHIEVEMENTS ── */
+.achieve-list{display:flex;flex-direction:column;gap:.75rem;}
+.achieve-item{display:flex;align-items:flex-start;gap:1rem;padding:1.25rem 1.5rem;background:var(--surface);border:.5px solid var(--border);border-radius:8px;transition:border-color .2s;}
+.achieve-item:hover{border-color:var(--border-bright);}
+.achieve-icon{font-size:1.3rem;flex-shrink:0;margin-top:1px;}
+.achieve-title{font-weight:500;font-size:15px;color:var(--text);}
+.achieve-sub{font-size:13px;color:var(--text-muted);margin-top:2px;}
+
+/* ── RESEARCH ── */
+.research-card{background:var(--surface);border:.5px solid var(--border);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:1.75rem 2rem;transition:border-color .2s;}
+.research-card:hover{border-color:var(--accent);}
+.research-title{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:600;color:var(--text);margin-bottom:.5rem;}
+.research-venue{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:.04em;margin-bottom:.75rem;}
+.research-abstract{font-size:14px;color:var(--text-muted);line-height:1.7;}
+
+/* ── EDUCATION ── */
+.edu-row{display:flex;gap:2rem;align-items:flex-start;padding:2rem 0;border-bottom:.5px solid var(--border);}
+.edu-row:last-child{border-bottom:none;}
+.edu-year{font-family:'DM Mono',monospace;font-size:12px;color:var(--text-dim);min-width:90px;padding-top:3px;}
+.edu-school{font-family:'Syne',sans-serif;font-size:1rem;font-weight:600;color:var(--text);margin-bottom:.2rem;}
+.edu-degree{font-size:14px;color:var(--text-muted);}
+
+/* ── CONTACT ── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.contact-left h2{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;line-height:1.15;margin-bottom:1rem;}
+.contact-left p{font-size:15px;color:var(--text-muted);line-height:1.7;margin-bottom:2rem;}
+.contact-form{display:flex;flex-direction:column;gap:.75rem;}
+.contact-form input,.contact-form textarea{background:var(--surface);border:.5px solid var(--border);border-radius:6px;padding:.75rem 1rem;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border-color .2s;resize:none;}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--text-dim);}
+.contact-form input:focus,.contact-form textarea:focus{border-color:var(--accent);}
+.contact-form textarea{min-height:110px;}
+.contact-links{display:flex;flex-direction:column;gap:.75rem;}
+.contact-link{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;background:var(--surface);border:.5px solid var(--border);border-radius:8px;text-decoration:none;color:inherit;transition:border-color .2s;}
+.contact-link:hover{border-color:var(--accent);}
+.contact-link-icon{width:36px;height:36px;border-radius:6px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;font-family:'DM Mono',monospace;font-weight:500;color:var(--accent);}
+.contact-link-label{font-size:12px;color:var(--text-dim);}
+.contact-link-value{font-size:14px;color:var(--text);font-weight:500;}
+
+/* ── FOOTER ── */
+footer{padding:2rem;border-top:.5px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.footer-text{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-dim);}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.hero-text>*{opacity:0;animation:fadeUp .6s ease forwards;}
+.hero-text>*:nth-child(1){animation-delay:.05s}
+.hero-text>*:nth-child(2){animation-delay:.15s}
+.hero-text>*:nth-child(3){animation-delay:.25s}
+.hero-text>*:nth-child(4){animation-delay:.35s}
+.hero-text>*:nth-child(5){animation-delay:.45s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .hero-grid,.contact-grid{grid-template-columns:1fr;}
+  .hero-photo-wrap{margin-bottom:1rem;}
+  .nav-links{display:none;}
+  .exp-item{grid-template-columns:1fr;}
+  .exp-period{text-align:left;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">praveen.p</div>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <span id="theme-icon">☀</span> <span id="theme-label">Light</span>
+      </button>
+    </li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid">
+
+    <!-- Photo column -->
+    <div class="hero-photo-wrap">
+      <!-- PHOTO INSTRUCTION: Replace the placeholder below with an <img> tag once you have a photo.
+           Example: <img src="photo.jpg" alt="Praveen Pandarinathan" class="hero-photo"> -->
+      <div class="hero-photo-placeholder">
+        <div class="photo-initials">PP</div>
+        <div>Add your photo here</div>
+        <div style="font-size:11px;color:var(--text-dim);margin-top:4px;">220×220px recommended</div>
+      </div>
+      <div class="hero-social-row">
+        <a href="https://github.com/Praveen7477" target="_blank" rel="noopener" class="hero-social-btn">⌥ GitHub</a>
+        <a href="https://linkedin.com/in/praveen-pandarinathan-0382b8200" target="_blank" rel="noopener" class="hero-social-btn">in LinkedIn</a>
+        <a href="mailto:praveenpandarinathan@gmail.com" class="hero-social-btn">✉ Email</a>
+      </div>
+    </div>
+
+    <!-- Text column -->
+    <div class="hero-text">
+      <div class="available-badge"><span class="dot"></span> Available from September 2026</div>
+      <div class="hero-eyebrow">ML / AI Engineer &amp; Cloud Architect</div>
+      <h1>Praveen<br><span class="name-accent">Pandari</span>nathan</h1>
+      <p class="hero-desc">
+        AWS Certified ML Engineer and Data Engineer with 2+ years of experience building cloud-native data pipelines, MLOps systems, and scalable analytics solutions. Currently pursuing MSc AI &amp; Data Analytics at IESEG School of Management, Lille.
+      </p>
+      <div class="hero-cta">
+        <a href="mailto:praveenpandarinathan@gmail.com" class="btn-primary">Get in touch</a>
+        <a href="resume.pdf" class="btn-outline" download>⬇ Download Resume</a>
+        <a href="https://github.com/Praveen7477" target="_blank" rel="noopener" class="btn-outline">View GitHub →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label">01 — Experience</div>
+    <h2 class="section-title">Where I've worked</h2>
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <div>
+          <div class="exp-role">Data Scientist — Hackathon</div>
+          <div class="exp-company">GSK Belgium · Vaccine Yield Project</div>
+          <div class="exp-desc">Built end-to-end preprocessing and feature engineering pipelines integrating SAP, event-log, and sensor data. Developed KPI analysis and batch-level yield prediction models for pharmaceutical manufacturing; presented findings to stakeholders.</div>
+          <div class="exp-metrics">
+            <span class="metric-chip">✦ 2,800+ engineered features</span>
+            <span class="metric-chip">✦ Multi-source data fusion</span>
+            <span class="metric-chip">✦ Stakeholder presentation</span>
+          </div>
+          <div class="exp-tags">
+            <span class="tag">Python</span><span class="tag">Feature Engineering</span><span class="tag">SAP Integration</span><span class="tag">KPI Analysis</span><span class="tag">Statistical Modelling</span>
+          </div>
+        </div>
+        <div class="exp-period">Jan 2026 — May 2026</div>
+      </div>
+
+      <div class="exp-item">
+        <div>
+          <div class="exp-role">Assistant Engineer — Data Analytics</div>
+          <div class="exp-company">Reude Technologies · Chennai, India</div>
+          <div class="exp-desc">Developed Python and SQL data pipelines for drone and IoT sensor data — automating ingestion, processing, and reporting workflows. Built ETL solutions on AWS (Lambda, S3, RDS) for real-time fleet monitoring. Supported cloud infrastructure automation using Terraform and IaC practices.</div>
+          <div class="exp-metrics">
+            <span class="metric-chip">✦ 70% reduction in manual effort</span>
+            <span class="metric-chip">✦ 100K+ sensor records/day</span>
+            <span class="metric-chip">✦ 99% pipeline reliability</span>
+            <span class="metric-chip">✦ Reporting: 4h → 30 min</span>
+          </div>
+          <div class="exp-tags">
+            <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">AWS Lambda</span><span class="tag">ETL</span><span class="tag">Terraform</span><span class="tag">IoT</span>
+          </div>
+        </div>
+        <div class="exp-period">Dec 2023 — Mar 2025</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label">02 — Projects</div>
+    <h2 class="section-title">Things I've built</h2>
+    <div class="projects-grid">
+
+      <a href="https://github.com/Praveen7477/AWS-3Tier-HA-Architecture" target="_blank" rel="noopener" class="project-card">
+        <div class="project-icon">🏗</div>
+        <div class="project-title">AWS 3-Tier HA Architecture <span class="project-arrow">↗</span></div>
+        <p class="project-desc">Production-grade, highly available three-tier web app on AWS spanning two Availability Zones — Auto Scaling, Multi-AZ RDS, internal load balancing, and full observability via CloudWatch, SNS, and CloudTrail.</p>
+        <div class="project-metrics">
+          <span class="proj-metric">99.9% availability</span>
+          <span class="proj-metric">Multi-AZ failover</span>
+          <span class="proj-metric">Auto Scaling enabled</span>
+        </div>
+        <div class="project-stack">
+          <span class="stack-tag">EC2</span><span class="stack-tag">ALB</span><span class="stack-tag">RDS MySQL</span><span class="stack-tag">Route 53</span><span class="stack-tag">CloudFront</span><span class="stack-tag">Nginx</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/Praveen7477/aws-serverless-feedback-system" target="_blank" rel="noopener" class="project-card">
+        <div class="project-icon">⚡</div>
+        <div class="project-title">AWS Serverless Feedback System <span class="project-arrow">↗</span></div>
+        <p class="project-desc">Fully serverless feedback collection app with event-driven architecture. API Gateway + Lambda + DynamoDB backend, SES email notifications, pre-signed S3 URLs, automated CI/CD via GitHub Actions.</p>
+        <div class="project-metrics">
+          <span class="proj-metric">&lt;100ms API latency</span>
+          <span class="proj-metric">Zero server management</span>
+          <span class="proj-metric">Auto CI/CD deploy</span>
+        </div>
+        <div class="project-stack">
+          <span class="stack-tag">Lambda</span><span class="stack-tag">DynamoDB</span><span class="stack-tag">API Gateway</span><span class="stack-tag">SES</span><span class="stack-tag">GitHub Actions</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/Praveen7477/aws_terraform_project" target="_blank" rel="noopener" class="project-card">
+        <div class="project-icon">🔧</div>
+        <div class="project-title">Terraform AWS IaC Projects <span class="project-arrow">↗</span></div>
+        <p class="project-desc">Collection of hands-on AWS infrastructure projects built using Terraform — real-world cloud architecture patterns, custom modules, VPC/EC2 configurations, and production environment automation.</p>
+        <div class="project-metrics">
+          <span class="proj-metric">30+ commits</span>
+          <span class="proj-metric">Reusable modules</span>
+        </div>
+        <div class="project-stack">
+          <span class="stack-tag">Terraform</span><span class="stack-tag">HCL</span><span class="stack-tag">VPC</span><span class="stack-tag">EC2</span><span class="stack-tag">Shell</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/Praveen7477" target="_blank" rel="noopener" class="project-card">
+        <div class="project-icon">🤖</div>
+        <div class="project-title">End-to-End MLOps Pipeline <span class="project-arrow">↗</span></div>
+        <p class="project-desc">Complete MLOps workflow for diabetes prediction — model training, FastAPI REST API, Docker containerisation, Kubernetes deployment with multi-replica setup, LoadBalancer, auto-scaling, and MLflow experiment tracking.</p>
+        <div class="project-metrics">
+          <span class="proj-metric">K8s multi-replica</span>
+          <span class="proj-metric">MLflow tracking</span>
+          <span class="proj-metric">Auto-scaling</span>
+        </div>
+        <div class="project-stack">
+          <span class="stack-tag">FastAPI</span><span class="stack-tag">Docker</span><span class="stack-tag">Kubernetes</span><span class="stack-tag">MLflow</span><span class="stack-tag">Python</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/Praveen7477" target="_blank" rel="noopener" class="project-card">
+        <div class="project-icon">🧠</div>
+        <div class="project-title">AI Resume Assistant — RAG <span class="project-arrow">↗</span></div>
+        <p class="project-desc">Retrieval-Augmented Generation app that answers questions over document collections. Vector search with ChromaDB, OpenAI LLM backend, FastAPI REST interface, Dockerised deployment. Designed for intelligent HR/recruitment workflows.</p>
+        <div class="project-metrics">
+          <span class="proj-metric">RAG architecture</span>
+          <span class="proj-metric">Vector search</span>
+          <span class="proj-metric">LLM-powered</span>
+        </div>
+        <div class="project-stack">
+          <span class="stack-tag">LangChain</span><span class="stack-tag">OpenAI API</span><span class="stack-tag">ChromaDB</span><span class="stack-tag">FastAPI</span><span class="stack-tag">Docker</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/Praveen7477/aws-ha-terraform-architecture-custom-module" target="_blank" rel="noopener" class="project-card">
+        <div class="project-icon">🧩</div>
+        <div class="project-title">HA Terraform Custom Module <span class="project-arrow">↗</span></div>
+        <p class="project-desc">Reusable Terraform custom module implementing high-availability AWS architecture patterns. Modular IaC design enabling consistent, repeatable infrastructure deployments across environments.</p>
+        <div class="project-metrics">
+          <span class="proj-metric">Custom modules</span>
+          <span class="proj-metric">DRY architecture</span>
+        </div>
+        <div class="project-stack">
+          <span class="stack-tag">Terraform</span><span class="stack-tag">Custom Modules</span><span class="stack-tag">AWS</span><span class="stack-tag">HCL</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">03 — Skills</div>
+    <h2 class="section-title">Technical toolkit</h2>
+    <div class="skills-layout">
+
+      <div class="skill-group">
+        <div class="skill-group-title">Languages</div>
+        <div class="skill-bars">
+          <div class="skill-bar-row"><div class="skill-bar-label"><span>Python</span><span>95%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:95%"></div></div></div>
+          <div class="skill-bar-row"><div class="skill-bar-label"><span>SQL</span><span>90%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div></div>
+          <div class="skill-bar-row"><div class="skill-bar-label"><span>PySpark</span><span>80%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%"></div></div></div>
+          <div class="skill-bar-row"><div class="skill-bar-label"><span>HCL / Terraform</span><span>85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%"></div></div></div>
+          <div class="skill-bar-row"><div class="skill-bar-label"><span>Bash / Linux</span><span>78%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:78%"></div></div></div>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">Cloud — AWS</div>
+        <div class="skill-bars">
+          <div class="skill-bar-row"><div class="skill-bar-label"><span>AWS Architecture</span><span>92%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:92%"></div></div></div>
+          <div class="skill-bar-row"><div class="skill-bar-label"><span>Lambda / Serverless</span><span>88%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%"></div></div></div>
+          <div class="skill-bar-row"><div class="skill-bar-label"><span>IaC / Terraform</span><span>85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%"></div></div></div>
+          <div class="skill-bar-row"><div class="skill-bar-label"><span>SageMaker / MLOps</span><span>78%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:78%"></div></div></div>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">ML / AI</div>
+        <div class="skill-bars">
+          <div class="skill-bar-row"><div class="skill-bar-label"><span>Scikit-learn / ML</span><span>88%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%"></div></div></div>
+          <div class="skill-bar-row"><div class="skill-bar-label"><span>Feature Engineering</span><span>90%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div></div>
+          <div class="skill-bar-row"><div class="skill-bar-label"><span>LangChain / RAG</span><span>72%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:72%"></div></div></div>
+          <div class="skill-bar-row"><div class="skill-bar-label"><span>Generative AI</span><span>75%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:75%"></div></div></div>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">MLOps &amp; DevOps</div>
+        <div class="skill-bars">
+          <div class="skill-bar-row"><div class="skill-bar-label"><span>Docker</span><span>88%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%"></div></div></div>
+          <div class="skill-bar-row"><div class="skill-bar-label"><span>Kubernetes</span><span>80%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%"></div></div></div>
+          <div class="skill-bar-row"><div class="skill-bar-label"><span>MLflow</span><span>82%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:82%"></div></div></div>
+          <div class="skill-bar-row"><div class="skill-bar-label"><span>GitHub Actions CI/CD</span><span>85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%"></div></div></div>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">GenAI Technologies</div>
+        <div class="skill-pills" style="margin-bottom:.75rem;">
+          <span class="skill-pill">LangChain</span>
+          <span class="skill-pill">RAG</span>
+          <span class="skill-pill">OpenAI API</span>
+          <span class="skill-pill">Vector Databases</span>
+          <span class="skill-pill">ChromaDB</span>
+          <span class="skill-pill">Prompt Engineering</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">Data &amp; Visualisation</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Apache Spark</span>
+          <span class="skill-pill">Databricks</span>
+          <span class="skill-pill">Pandas / NumPy</span>
+          <span class="skill-pill">Tableau</span>
+          <span class="skill-pill">KPI Dashboards</span>
+          <span class="skill-pill">PostgreSQL</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="container">
+    <div class="section-label">04 — Certifications</div>
+    <h2 class="section-title">Industry credentials</h2>
+    <div class="certs-grid">
+      <a href="https://www.credly.com/badges" target="_blank" rel="noopener" class="cert-card">
+        <div class="cert-badge">☁</div>
+        <div class="cert-title">AWS ML Engineer Associate</div>
+        <div class="cert-code">MLA-C01</div>
+        <div class="cert-verify"><span class="cert-verify-dot"></span> Verify credential →</div>
+      </a>
+      <a href="https://www.credly.com/badges" target="_blank" rel="noopener" class="cert-card">
+        <div class="cert-badge">🏛</div>
+        <div class="cert-title">AWS Solutions Architect Associate</div>
+        <div class="cert-code">SAA-C03</div>
+        <div class="cert-verify"><span class="cert-verify-dot"></span> Verify credential →</div>
+      </a>
+      <a href="https://www.credly.com/badges" target="_blank" rel="noopener" class="cert-card">
+        <div class="cert-badge">⬡</div>
+        <div class="cert-title">HashiCorp Terraform Associate</div>
+        <div class="cert-code">TA-004</div>
+        <div class="cert-verify"><span class="cert-verify-dot"></span> Verify credential →</div>
+      </a>
+      <a href="https://www.credly.com/badges" target="_blank" rel="noopener" class="cert-card">
+        <div class="cert-badge">⚡</div>
+        <div class="cert-title">Databricks Spark Developer</div>
+        <div class="cert-code">Associate</div>
+        <div class="cert-verify"><span class="cert-verify-dot"></span> Verify credential →</div>
+      </a>
+      <a href="https://www.credly.com/badges" target="_blank" rel="noopener" class="cert-card">
+        <div class="cert-badge">📊</div>
+        <div class="cert-title">Salesforce Tableau Desktop</div>
+        <div class="cert-code">TDS-C01</div>
+        <div class="cert-verify"><span class="cert-verify-dot"></span> Verify credential →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="container">
+    <div class="section-label">05 — Achievements</div>
+    <h2 class="section-title">Highlights</h2>
+    <div class="achieve-list">
+      <div class="achieve-item">
+        <div class="achieve-icon">🏆</div>
+        <div>
+          <div class="achieve-title">GSK Belgium Hackathon — Vaccine Yield Project</div>
+          <div class="achieve-sub">Selected to work on real pharmaceutical manufacturing data for one of the world's largest healthcare companies · 2026</div>
+        </div>
+      </div>
+      <div class="achieve-item">
+        <div class="achieve-icon">🎓</div>
+        <div>
+          <div class="achieve-title">MSc AI &amp; Data Analytics — IESEG School of Management</div>
+          <div class="achieve-sub">Pursuing advanced studies at a top-ranked French grande école · Lille, France · 2025–2026</div>
+        </div>
+      </div>
+      <div class="achieve-item">
+        <div class="achieve-icon">☁</div>
+        <div>
+          <div class="achieve-title">AWS Certified ML Engineer Associate</div>
+          <div class="achieve-sub">Among the first cohort to achieve MLA-C01 certification · Validates end-to-end ML lifecycle expertise on AWS</div>
+        </div>
+      </div>
+      <div class="achieve-item">
+        <div class="achieve-icon">🚀</div>
+        <div>
+          <div class="achieve-title">70% Automation Uplift at Reude Technologies</div>
+          <div class="achieve-sub">Reduced manual data processing effort across IoT/drone operations pipelines · Cut reporting cycle from 4 hours to 30 minutes</div>
+        </div>
+      </div>
+      <div class="achieve-item">
+        <div class="achieve-icon">📜</div>
+        <div>
+          <div class="achieve-title">5 Industry Certifications</div>
+          <div class="achieve-sub">AWS (×2), HashiCorp Terraform, Databricks Spark, Salesforce Tableau — spanning cloud, IaC, big data, and visualisation</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- RESEARCH / PUBLICATIONS -->
+<section id="research">
+  <div class="container">
+    <div class="section-label">06 — Research</div>
+    <h2 class="section-title">Research &amp; applied work</h2>
+    <div class="research-card">
+      <div class="research-title">Manufacturing Yield Prediction using Feature Engineering and Statistical Modelling</div>
+      <div class="research-venue">GSK Belgium · Hackathon Project Report · 2026</div>
+      <div class="research-abstract">
+        Developed a scalable analytics pipeline integrating SAP, event-log, and sensor data streams for pharmaceutical batch manufacturing at GSK Belgium. Generated 2,800+ engineered features via domain-driven transformation techniques. Applied statistical modelling and machine learning to predict batch yield outcomes, enabling data-driven quality control decisions. Delivered findings and strategic recommendations to senior stakeholders.
+      </div>
+      <div class="exp-tags" style="margin-top:1rem;">
+        <span class="tag">Manufacturing Analytics</span><span class="tag">Feature Engineering</span><span class="tag">Yield Prediction</span><span class="tag">SAP</span><span class="tag">Statistical ML</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <div class="section-label">07 — Education</div>
+    <h2 class="section-title">Academic background</h2>
+    <div class="edu-row">
+      <div class="edu-year">2025 — 2026</div>
+      <div>
+        <div class="edu-school">IESEG School of Management</div>
+        <div class="edu-degree">MSc AI &amp; Data Analytics · Lille, France</div>
+        <div class="exp-tags" style="margin-top:.75rem;">
+          <span class="tag">Data Engineering</span><span class="tag">Big Data Analytics</span><span class="tag">Cloud Computing</span><span class="tag">Machine Learning</span><span class="tag">Statistics</span>
+        </div>
+      </div>
+    </div>
+    <div class="edu-row">
+      <div class="edu-year">2019 — 2023</div>
+      <div>
+        <div class="edu-school">Hindustan University</div>
+        <div class="edu-degree">BEng Aeronautical Engineering · Chennai, India</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">08 — Contact</div>
+    <h2 class="section-title">Let's build something</h2>
+    <div class="contact-grid">
+      <div class="contact-left">
+        <h2>Open to new<br>opportunities.</h2>
+        <p>Looking for ML/AI engineering, MLOps, and cloud infrastructure roles. Available from September 2026 — open to relocation anywhere. Fluent in English, Tamil, and basic French (A2).</p>
+        <!-- Contact form — powered by Formspree. Replace ACTION_URL with your Formspree endpoint -->
+        <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="handleFormSubmit(event)">
+          <input type="text" name="name" placeholder="Your name" required>
+          <input type="email" name="email" placeholder="Your email" required>
+          <textarea name="message" placeholder="Your message..." required></textarea>
+          <button type="submit" class="btn-primary" style="align-self:flex-start;" id="form-btn">Send message</button>
+          <div id="form-status" style="font-size:13px;color:var(--accent3);display:none;">Message sent! I'll get back to you soon.</div>
+        </form>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:praveenpandarinathan@gmail.com" class="contact-link">
+          <div class="contact-link-icon">✉</div>
+          <div><div class="contact-link-label">Email</div><div class="contact-link-value">praveenpandarinathan@gmail.com</div></div>
+        </a>
+        <a href="https://linkedin.com/in/praveen-pandarinathan-0382b8200" target="_blank" rel="noopener" class="contact-link">
+          <div class="contact-link-icon">in</div>
+          <div><div class="contact-link-label">LinkedIn</div><div class="contact-link-value">praveen-pandarinathan-0382b8200</div></div>
+        </a>
+        <a href="https://github.com/Praveen7477" target="_blank" rel="noopener" class="contact-link">
+          <div class="contact-link-icon">⌥</div>
+          <div><div class="contact-link-label">GitHub</div><div class="contact-link-value">github.com/Praveen7477</div></div>
+        </a>
+        <a href="resume.pdf" download class="contact-link">
+          <div class="contact-link-icon">⬇</div>
+          <div><div class="contact-link-label">Resume</div><div class="contact-link-value">Download PDF</div></div>
+        </a>
+        <div class="contact-link" style="cursor:default;">
+          <div class="contact-link-icon">📍</div>
+          <div><div class="contact-link-label">Location</div><div class="contact-link-value">Lille, France · Open to relocation</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-text">© 2026 Praveen Pandarinathan</span>
+  <span class="footer-text">Available Sep 2026 · Open to relocation</span>
+</footer>
+
+<script>
+// ── DARK / LIGHT TOGGLE ──
+function toggleTheme(){
+  const html=document.documentElement;
+  const isDark=html.getAttribute('data-theme')==='dark';
+  html.setAttribute('data-theme',isDark?'light':'dark');
+  document.getElementById('theme-icon').textContent=isDark?'🌙':'☀';
+  document.getElementById('theme-label').textContent=isDark?'Dark':'Light';
+}
+
+// ── CONTACT FORM ──
+function handleFormSubmit(e){
+  // If you've set up Formspree, remove the preventDefault below and let the form submit normally.
+  // For now it shows a success message without actually sending.
+  e.preventDefault();
+  const btn=document.getElementById('form-btn');
+  const status=document.getElementById('form-status');
+  btn.textContent='Sending…';btn.disabled=true;
+  setTimeout(()=>{
+    btn.style.display='none';
+    status.style.display='block';
+    e.target.reset();
+  },1000);
+}
+
+// ── SKILL BARS ANIMATE ON SCROLL ──
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.querySelectorAll('.skill-bar-fill').forEach(bar=>{
+        const w=bar.style.width;bar.style.width='0';
+        setTimeout(()=>{bar.style.width=w;},100);
+      });
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:0.2});
+document.querySelectorAll('.skill-group').forEach(g=>observer.observe(g));
+</script>
+</body>
+</html>
